@@ -40,8 +40,11 @@ int main(int argc, char *argv[])
             /* TODO: SLEEP FOR 6 SECONDS*/
             sleep(6);
             /* TODO: EXECUTE THE COMMAND ls -l USING EXECVP*/
-            exit(0);
-            execvp(argv[0],argv);
+            char *myargs[3];
+            myargs[0] = strdup("ls"); // program: "wc" (word count)
+            myargs[1] = strdup("-l"); // argument: file to count
+            myargs[2] = NULL;
+            execvp(myargs[0],myargs);
         }
         else // if the option number is odd, terminate with a kill signal
         {
@@ -49,7 +52,7 @@ int main(int argc, char *argv[])
             kill(getpid(), SIGINT);
         }
     }
-    else if (pid > 0)
+    else
     {
         int status;
 
